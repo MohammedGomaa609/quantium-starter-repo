@@ -35,17 +35,17 @@ for file in csv_files:
 combined_df = pd.concat(dataframes, ignore_index=True)
 print(f"\nTotal rows combined: {len(combined_df)}")
 
-# Step 1: Filter for Pink Morsel only
+# Filter for Pink Morsel only
 pink_morsel_df = combined_df[combined_df['product'] == 'pink morsel'].copy()
 print(f"Pink Morsel rows: {len(pink_morsel_df)}")
 
-# Step 2: Calculate sales (price × quantity)
+# Calculate sales (price × quantity)
 pink_morsel_df['sales'] = pink_morsel_df['price'] * pink_morsel_df['quantity']
 
-# Step 3: Select only the required columns: sales, date, region
+# Select only the required columns: sales, date, region
 output_df = pink_morsel_df[['sales', 'date', 'region']].copy()
 
-# Rename columns to match exact specification (capitalize first letter)
+# Rename columns to match exact specification
 output_df.columns = ['sales', 'date', 'region']
 
 # Sort by date for better organization
@@ -71,7 +71,7 @@ print("\n" + "="*60)
 print(f"✅ Output saved to: {output_file}")
 print("="*60)
 
-# Verification: Re-read the file to confirm it was saved correctly
+# Re-read the file to confirm it was saved correctly
 verification_df = pd.read_csv(output_file)
 print(f"\nVerification: File contains {len(verification_df)} rows and {len(verification_df.columns)} columns")
 print(f"Columns: {list(verification_df.columns)}")
